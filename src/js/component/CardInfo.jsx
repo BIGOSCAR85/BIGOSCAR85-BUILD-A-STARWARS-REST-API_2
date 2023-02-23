@@ -6,8 +6,10 @@ export const CardInfo = () => {
     const { store, actions } = useContext(Context);
     const [itemInfo, setItemInfo] = useState();
     const params = useParams();
-    const properties = ["birth_year", "gender", "height", "skin_color", "eye_color", "climate", "population", "orbital_period", "rotation_period", "diameter"];
+    const properties = ["gender", "hair_color", "height", "birth_year", "skin_color", "eye_color", "cargo_capacity", "consumables",
+    "cost_in_credits", "created", "crew", "edited", "length", "manufacturer", "climate", "population", "orbital_period", "rotation_period", "diameter"];
     const img_character = `https://starwars-visualguide.com/assets/img/characters/${params.id}.jpg`
+    const img_vehicle = `https://starwars-visualguide.com/assets/img/vehicles/${params.id}.jpg`
     const img_planet = `https://starwars-visualguide.com/assets/img/planets/${params.id}.jpg`
     async function info(id, type) {
         const data = await actions.getCardInfo(id, type);
@@ -29,13 +31,20 @@ export const CardInfo = () => {
                                     <img src={img_character}
                                         height="auto"
                                         width="400px"
-                                        alt="..-" />
-                                    : <img src={img_planet}
+                                        alt="..." />                                 
+
+                                    : <img src={img_vehicle}
                                         height="auto"
                                         width="400px"
-                                        alt="..." />
+                                        alt="..." /> 
+                                        
+                                     == <img src={img_planet}
+                                         height="auto"
+                                         width="400px"
+                                         alt="..." /> 
                                     
-                            }
+                            }                                    
+                            
                             <div className="ms-5">
                                 <h1>{itemInfo.name}</h1>
                                 <hr></hr>

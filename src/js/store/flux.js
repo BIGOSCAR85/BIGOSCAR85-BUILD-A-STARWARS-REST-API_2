@@ -16,6 +16,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			apiUrl: "https://swapi.dev/api",
 			characters: [],
+			vehicles: [],
 			planets: [],
 			favorites: []
 		},
@@ -33,6 +34,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const body = await response.json();
 					setStore({
 						characters: body.results
+					})
+					return body;
+				} catch (error) {
+					console.log(error);
+				}
+			},
+			getVehicles: async () => {
+				const store = getStore();
+				try {
+					const response = await fetch(`${store.apiUrl}/vehicles`)
+					if (!response.ok) {
+						alert("We have a problem with the GetVehicles");
+					}
+					const body = await response.json();
+					setStore({
+						vehicles: body.results
 					})
 					return body;
 				} catch (error) {
