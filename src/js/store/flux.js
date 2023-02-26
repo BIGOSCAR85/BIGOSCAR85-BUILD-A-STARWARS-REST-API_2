@@ -40,6 +40,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error);
 				}
 			},
+
+						getPlanets: async () => {
+				const store = getStore();
+				try {
+					const response = await fetch(`${store.apiUrl}/planets`)
+					if (!response.ok) {
+						alert("We have a problem with the GetPlanets");
+					}
+					const body = await response.json();
+					setStore({
+						planets: body.results
+					})
+					return body;
+				} catch (error) {
+					console.log(error);
+				}
+			},
 			getVehicles: async () => {
 				const store = getStore();
 				try {
@@ -56,22 +73,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error);
 				}
 			},
-			getPlanets: async () => {
-				const store = getStore();
-				try {
-					const response = await fetch(`${store.apiUrl}/planets`)
-					if (!response.ok) {
-						alert("We have a problem with the GetPlanets");
-					}
-					const body = await response.json();
-					setStore({
-						planets: body.results
-					})
-					return body;
-				} catch (error) {
-					console.log(error);
-				}
-			},
+
 			getCardInfo: async (id, type) => {
 				const store = getStore();
 				try {

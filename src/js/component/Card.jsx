@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const Card = (props) => {
-    const properties = ["gender", "eye_color", "hair_color", "population", "terrain"];
+    const properties = ["gender", "eye_color", "hair_color", "population", "terrain", "cargo_capacity", "consumables"];
     const { store, actions } = useContext(Context);
     
     return (
-        <div className="card col-3 mx-2" style={{ width: "20rem" }}>
+        <div className="card col-3 mx-2" style={{ width: "12rem" }}>
             <img src={props.picture} className="card-img-top" alt="..." />
             <div className="card-header">
                 <h2 className="card-title">{props.item.name}</h2>

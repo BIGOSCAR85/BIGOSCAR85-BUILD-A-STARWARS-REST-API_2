@@ -5,15 +5,15 @@ import "../../styles/home.css";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
-  let count_characters = 0;
-  let count_vehicles = 0;
+  let count_characters = 0;  
   let count_planets = 0;
+  let count_vehicles = 0;
   let img = "";
 
   useEffect(() => {
     actions.getCharacters();
-    actions.getVehicles();
     actions.getPlanets();
+    actions.getVehicles();
   }, []);
 
   return (
@@ -44,33 +44,6 @@ export const Home = () => {
           </>
         )}
       </div>
-
-      <div>
-        <h1 className="title d-flex justify-content-center">Vehicles</h1>
-      </div>
-      <div className="d-flex char-container">
-        {store.vehicles.length <= 0 ? (
-          <div>Loading...</div>
-        ) : (
-          <>
-            {store.vehicles.map((vehicle, index) => {
-              count_vehicles = count_vehicles + 1;
-              let name_vehicles = "vehicles";
-              img = `https://starwars-visualguide.com/assets/img/vehicles/${count_vehicles}.jpg`;
-              return (
-                <Card
-                  item={vehicle}
-                  key={`${index}a`}
-                  picture={img}
-                  id={count_vehicles}
-                  type={name_vehicles}
-                />
-              );
-            })}
-          </>
-        )}
-      </div>
-
       <div>
         <h1 className="title d-flex justify-content-center">Planets</h1>
       </div>
@@ -90,6 +63,31 @@ export const Home = () => {
                   picture={img}
                   id={count_planets}
                   type={name_planets}
+                />
+              );
+            })}
+          </>
+        )}
+      </div>
+      <div>
+        <h1 className="title d-flex justify-content-center">Vehicles</h1>
+      </div>
+      <div className="d-flex char-container">
+        {store.vehicles.length <= 0 ? (
+          <div>Loading...</div>
+        ) : (
+          <>
+            {store.vehicles.map((vehicle, index) => {
+              count_vehicles = count_vehicles + 1;
+              let name_vehicles = "vehicles";
+              img = `https://starwars-visualguide.com/assets/img/vehicles/${count_vehicles}.jpg`;
+              return (
+                <Card
+                  item={vehicle}
+                  key={`${index}a`}
+                  picture={img}
+                  id={count_vehicles}
+                  type={name_vehicles}
                 />
               );
             })}
